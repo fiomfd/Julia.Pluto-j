@@ -1056,7 +1056,7 @@ end
 
 # ╔═╡ 1c624c90-99ed-414d-a6e4-b2f6b16101c8
 md"""
-###### 6. 回転
+##### 6. 回転
 原点を中心に反時計回りに角度 $\theta \in [0,2\pi)$ の回転を与える行列 $P(\theta)$ は
 
 $P(\theta)
@@ -1113,6 +1113,8 @@ begin
 	
     plot(s1,s2,
         xlabel = L"s", ylabel = L"t",
+		xlabelfontsize = 14,
+		ylabelfontsize = 14,
         titlefontsize = 20,
         xlim = (-2.1, 2.1), ylim = (-2.1, 2.1),
 		xticks=false, yticks=false,
@@ -1127,18 +1129,18 @@ begin
 
     plot!(xx1,xx2,
         arrow = (:closed, 2.0),
-        color = :green, label = L"s")
+        color = :green, label = L"x")
 
     plot!(yy1,yy2,
         arrow = (:closed, 2.0),
-        color = :magenta, label = L"t")
+        color = :magenta, label = L"y")
 
 end
 
 
 # ╔═╡ ca6d79ef-d5a4-4a55-b7f9-83d8682ddd1b
 md"""
-###### 7. 特異値分解
+##### 7. 特異値分解
 
 任意の $2\times2$ 行列 $A=\begin{bmatrix} a & b \\ c & d\end{bmatrix}$ に対して, ある $\theta, \varphi \in [0,2\pi]$ と $\lambda \geqq \mu \geqq 0$ が存在して
 
