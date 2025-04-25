@@ -46,8 +46,12 @@ md"""
 # #３ 計算論的思考とデータ
 ### 千原浩之
 
-### 8:30-9:30 Zoom 講義
-### 9:40-9:55 WebClass 試験
+## 8:30-9:30 Zoom 講義
+### I. 計算論的思考 (computational thinking)
+### II. 線形代数
+### III. 様々なデータとデータ処理
+
+## 9:40-9:55 WebClass 試験
 
 """
 
@@ -555,7 +559,7 @@ end
 
 # ╔═╡ 5b538799-ea23-46cf-9f40-34e902cfc91d
 md"""
- learning rate $s$ = $(@bind s6 Slider(0.01:0.01:0.2, show_value=true, default=0.03))
+ learning rate $s$ = $(@bind s6 Slider(0.01:0.01:0.2, show_value=true, default=0.02))
 
  $x_0$ = $(@bind a6 Slider(-1:0.1:1, show_value=true, default=0.8)) 
 
@@ -945,11 +949,11 @@ $\vec{a} = \begin{bmatrix} a_1 \\ a_2 \end{bmatrix}, \quad
 \vec{b} = \begin{bmatrix} b_1 \\ b_2 \end{bmatrix}, \quad
 \vec{a} + \vec{b} = \begin{bmatrix} a_1 + b_1 \\ a_2 + b_2 \end{bmatrix}$
 
-a1 = $(@bind aa1 Slider(-1.5:0.1:1.5, show_value=true, default=1))  
+a1 = $(@bind aa1 Slider(-1.5:0.1:1.5, show_value=true, default=1.3))  
 b1 = $(@bind bb1 Slider(-1.5:0.1:1.5, show_value=true, default=-1))  
 
-a2 = $(@bind aa2 Slider(-1.5:0.1:1.5, show_value=true, default=0.5))  
-b2 = $(@bind bb2 Slider(-1.5:0.1:1.5, show_value=true, default=0.5))  
+a2 = $(@bind aa2 Slider(-1.5:0.1:1.5, show_value=true, default=0.3))  
+b2 = $(@bind bb2 Slider(-1.5:0.1:1.5, show_value=true, default=1.2))  
 """
 
 # ╔═╡ 157db428-8868-403b-9e3b-705f3df7612a
@@ -1138,9 +1142,69 @@ begin
 end
 
 
+# ╔═╡ 3e57202c-4c53-4282-a477-410a990bb318
+md"""
+##### 7. 鏡映
+ $\theta \in (-\pi,\pi)$ とする. 次の線形写像
+
+$\vec{v}=M(\theta)\vec{u},
+\quad
+\vec{u}
+=
+\begin{bmatrix} u_1 \\ u_2 \end{bmatrix},
+\quad
+\vec{v}
+=
+\begin{bmatrix} v_1 \\ v_2 \end{bmatrix},
+\quad
+M(\theta)
+=
+\begin{bmatrix}
+\cos(2\theta) & \sin(2\theta)
+\\
+\sin(2\theta) & -\cos(2\theta)
+\end{bmatrix}$
+
+は直線 $y=x\tan\theta$ についての対称な点への写像である. 
+
+u1 = $(@bind u1 Slider(-1.6:0.1:1.6, show_value=true, default=1.4))  
+u2 = $(@bind u2 Slider(-1.6:0.1:1.6, show_value=true, default=1.4))
+
+θ = $(@bind φ Slider(-90:1:90, show_value=true, default=20))  
+"""
+
+# ╔═╡ 659ab5e5-5b78-4496-a3d5-5f4b22396178
+begin
+	GR.setarrowsize(1.5)
+
+    ax = [-3*sqrt(2)*cos(φ*pi/180), 3*sqrt(2)*cos(φ*pi/180)]
+    ay = [-3*sqrt(2)*sin(φ*pi/180), 3*sqrt(2)*sin(φ*pi/180)]
+	v1=u1*cos(φ*pi/90)+u2*sin(φ*pi/90)
+	v2=u1*sin(φ*pi/90)-u2*cos(φ*pi/90)
+    bx=[u1,v1]
+	by=[u2,v2]
+	
+    plot(ax,ay,
+        xlabel = L"x", ylabel = L"y",
+		xlabelfontsize = 14,
+		ylabelfontsize = 14,
+        titlefontsize = 20,
+        xlim = (-2.5, 2.5), ylim = (-2.5, 2.5),
+		xticks=false, yticks=false,
+        line = (:closed, 1.5),
+        color = :green, label = false,
+        grid = false, aspect_ratio = 1,
+        legend = :bottomleft, legendfontsize = 12)
+	plot!(bx,by,
+        line = (:closed, 1.0),
+        color = :orange, label = false)
+	scatter!((u1,u2),markersize = 5,label=L"\vec{u}", color=:magenta)
+	scatter!((v1,v2),markersize = 5,label=L"\vec{v}", color=:blue)
+end
+
 # ╔═╡ ca6d79ef-d5a4-4a55-b7f9-83d8682ddd1b
 md"""
-##### 7. 特異値分解
+##### 8. 特異値分解
 
 任意の $2\times2$ 行列 $A=\begin{bmatrix} a & b \\ c & d\end{bmatrix}$ に対して, ある $\theta, \varphi \in [0,2\pi]$ と $\lambda \geqq \mu \geqq 0$ が存在して
 
@@ -4647,6 +4711,8 @@ version = "1.4.1+2"
 # ╟─1299f123-8d64-423f-bc64-6410a7392cc2
 # ╟─1c624c90-99ed-414d-a6e4-b2f6b16101c8
 # ╟─0969f38b-f1f6-4b81-b358-c87ab486beff
+# ╟─3e57202c-4c53-4282-a477-410a990bb318
+# ╟─659ab5e5-5b78-4496-a3d5-5f4b22396178
 # ╟─ca6d79ef-d5a4-4a55-b7f9-83d8682ddd1b
 # ╟─b06741a8-5ca6-4e15-b085-e3bbcddca93d
 # ╟─87dd79c0-c0e9-4021-879a-c18cfa6e9252
