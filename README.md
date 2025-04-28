@@ -3,8 +3,11 @@
 
 This is a file repository for Pluto jl&html files written in Japanese.
 
+- material
+  読み込む写真などを置いています。
+
 - image
-  読み込む画像を置いています。
+  読み込む自作画像を置いています。
 
 - オムニバス講義「計算論的思考とデータ」
 
