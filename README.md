@@ -15,8 +15,3 @@ This is a file repository for Pluto html files written in Japanese.
   
   pluto_2025_open_campus_computational_thinking-j.html
 
-- 平面ベクトルの加法
-  
-  pluto_vectors-j.html
-  
-  pluto_vectors-j.jl
