@@ -1,7 +1,10 @@
 # Julia.Pluto-j
-日本語の Pluto のhtmlファイル置き場です。
+日本語の Pluto の jl&htmlファイル置き場です。
 
-This is a file repository for Pluto html files written in Japanese.
+This is a file repository for Pluto jl&html files written in Japanese.
+
+- image
+  読み込む画像を置いています。
 
 - オムニバス講義「計算論的思考とデータ」
 
