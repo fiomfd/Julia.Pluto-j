@@ -81,8 +81,7 @@ md"""
 - 微分可能性
 に登場するが、それがどういうことなのかは何も説明がない。 実際には微分可能性の定義を論ずると「接する」ということの定義が見えてくる. 
 
-ここでは原点を中心とする単位円と直線の肝景を観察してみよう。 
-高校数学IIでは $x^2+y^2=1$ と方程式 $y=ax+b$ で表される直線が接するとは, 交点がただ一つの場合と定義されていてるだけであり, 交点付近での円弧と直線の振る舞い方についての説明はない. このような交点は $a^2+1=b^2$ が成立する場合にのみ起こり, 直線の方程式と交点のは次の2通りになる:
+ここでは原点を中心とする単位円と直線の関係を観察してみよう。 高校数学IIでは $x^2+y^2=1$ と方程式 $y=ax+b$ で表される直線が接するとは, 交点がただ一つの場合と定義されていてるだけであり, 交点付近での円弧と直線の振る舞い方についての説明はない. このような交点は $a^2+1=b^2$ が成立する場合にのみ起こり, 直線の方程式と交点のは次の2通りになる:
 
 $\begin{aligned}
   y=ax+\sqrt{1+a^2}, 
@@ -93,6 +92,9 @@ $\begin{aligned}
 & \quad
   \text{Q}\left(\frac{a}{\sqrt{1+a^2}},-\frac{1}{\sqrt{1+a^2}}\right).
 \end{aligned}$
+
+P と Q を結ぶ直線の方程式は $y=-x/a$, 但し $a=0$ のときは $x=0$ で原点 $(0,0)$ を通り, 
+$y=ax+b$ と直交することに注意する. 
 
  $a=\tan\theta$, $\theta\in(-\pi/2,\pi/2)$ とし, $\theta$ をパラメータとして図示する.
 
@@ -130,7 +132,17 @@ begin
 	 linecolor=:green,
 	 linewidth=2,
 	 legend=:false)
+	plot!([-1.5*tan(θ*pi/180)/sqrt(1+tan(θ*pi/180)^2),
+		  1.5*tan(θ*pi/180)/sqrt(1+tan(θ*pi/180)^2)],
+		 [1.5/sqrt(1+tan(θ*pi/180)^2),
+		  -1.5/sqrt(1+tan(θ*pi/180)^2)],
+	 linecolor=:orange,
+	 linewidth=1,
+	 legend=:false)
 	scatter!(P,Q, markersize = 5,label = false, markercolor=:magenta)
+	scatter!((0,0), markersize = 5,label = false, markercolor=:red)
+
+
 end
 
 # ╔═╡ b2ddf1be-5558-4ab2-bb82-477930388dac
