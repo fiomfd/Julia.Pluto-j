@@ -43,16 +43,16 @@ md"""
 md"""
 #### 計算論的思考 (computational thinking) とは何か？
 
-- 数学および計算機を積極的に援用して問題の可視化や解決を図ろうという考え方である。
+- 数学および計算機を積極的に援用して問題の可視化や解決を図ろうという考え方である.
 
 
-- 現在では世界中の大学で古典的数学とプログラミング言語に長けた教員による "computational thinking" という題目の講義科目が提供されるようになっており、現代の必須の教養である。
+- 現在では世界中の大学で古典的数学とプログラミング言語の両方に長けた教員による "computational thinking" という題目の講義科目が提供されるようになっており、現代の必須の教養である.
 
 
-- [MIT 18S.191 Introduction to Computational Thinking](https://computationalthinking.mit.edu/Fall24/) が最も優れた講義として有名である。
+- [MIT 18S.191 Introduction to Computational Thinking](https://computationalthinking.mit.edu/Fall24/) が最も優れた講義として有名である.
 
 
-- 日本国では高等学校情報Iの教科書の序文に登場する言葉でしかなく、あまり知られていない言葉である。残念ながら古典的数学とプログラミング言語に長けた教員があまりいないので、このような講義を提供することができない。
+- 日本国では高等学校情報Iの教科書の序文に登場する言葉でしかなく, あまり知られていない言葉である. 残念ながら古典的数学とプログラミング言語の両方に長けた教員があまりいないので, このような講義を提供することができない.
 """
 
 # ╔═╡ 7d7e3384-cce9-4a97-bd78-604932418d56
@@ -101,9 +101,6 @@ $y=ax+b$ と直交することに注意する.
 θ = $(@bind θ Slider(-89:1:89, show_value=true, default=30)) 度
 """
 
-# ╔═╡ 29890f50-2fb9-49b5-bef8-0fdcd3d37255
-
-
 # ╔═╡ 3aad24a4-4d18-4ca4-8117-e5084dd72ec4
 begin
 	f(x,y) = x^2 + y^2 - 1
@@ -151,10 +148,6 @@ end
 # ╔═╡ 6abea7c8-899d-4278-8e43-043ae1147fdf
 md"""
 #### 3. 予備的考察
-"""
-
-# ╔═╡ 4c26a3e2-7ad7-4ca5-a5bb-1cf747f1a11a
-md"""
 p = $(@bind r Slider(0.1:0.1:10, show_value=true, default=2)) 
 """
 
@@ -189,10 +182,7 @@ $R(x):=
 f(x)-h(x)=(x-a)^2$
 
 となることに注意する. $\beta=2a$ のときのみ1次式 $x-a$ よりも速く $0$ に近づく. 
-"""
 
-# ╔═╡ 092ba07e-4866-40c6-ade8-25d9c2218011
-md"""
 a = $(@bind a1 Slider(-4:0.1:4, show_value=true, default=2)) 
 β = $(@bind b1 Slider(-40:0.1:40, show_value=true, default=-1))
 """
@@ -218,10 +208,7 @@ $f(x)-g(x)
 \end{cases}$
 
 任意の $\beta$ に対して $\beta\pm1$ の少なくとも一方は $0$ にならないので, $x-a$ よりも速く $0$ に近づくことはない. 
-"""
 
-# ╔═╡ 5193aa51-fcde-4b7a-b942-924709834e4f
-md"""
 β = $(@bind b2 Slider(-40:0.1:40, show_value=true, default=-0.3))
 """
 
@@ -253,10 +240,7 @@ $R(x):=
 f(x)-h(x)=(x+2a)(x-a)^2$
 
 となることに注意する. $\beta=3a^2-1$ のときのみ1次式 $x-a$ よりも速く $0$ に近づく. 
-"""
 
-# ╔═╡ 9e546dc8-fb95-4606-bedc-d8df0ea1afed
-md"""
 a = $(@bind a3 Slider(-4:0.1:4, show_value=true, default=1.5)) 
 β = $(@bind b3 Slider(-40:0.1:40, show_value=true, default=1\-1))
 """
@@ -2256,23 +2240,18 @@ version = "1.8.1+0"
 # ╟─c2b971bd-5dc2-4f84-80d2-dd5307a96961
 # ╟─a207e202-dc09-48a1-a10e-4c20a1e1a594
 # ╟─763ca8d2-4975-4599-9aa2-247d2775c0cc
-# ╟─29890f50-2fb9-49b5-bef8-0fdcd3d37255
 # ╟─3aad24a4-4d18-4ca4-8117-e5084dd72ec4
 # ╟─b2ddf1be-5558-4ab2-bb82-477930388dac
 # ╟─6abea7c8-899d-4278-8e43-043ae1147fdf
-# ╟─4c26a3e2-7ad7-4ca5-a5bb-1cf747f1a11a
 # ╟─769adba4-34e2-4e63-9099-2df3f6dbb529
 # ╟─c0233b8e-9db1-4a3a-8080-9f4bf7f3804b
 # ╟─76cb2ec2-fc76-4ad5-8d57-777395755f7f
-# ╟─092ba07e-4866-40c6-ade8-25d9c2218011
 # ╟─8ed1312b-f5a3-4220-a865-9a12ed09a691
 # ╟─21c924bb-23de-42ac-805b-a19744a8e105
 # ╟─cfb114a5-e5c4-429d-bf6e-9acf7ea4b31d
-# ╟─5193aa51-fcde-4b7a-b942-924709834e4f
 # ╟─3c696822-5b77-4512-83f0-c524371cde5d
 # ╟─728a353b-e2fe-460d-8dcc-0f4cadbbd033
 # ╟─2db362e9-e32a-4ba2-8810-3bdef318af41
-# ╟─9e546dc8-fb95-4606-bedc-d8df0ea1afed
 # ╟─6d2d8054-56e3-4499-a8ea-cfcf291361e8
 # ╟─b61b5be5-2b6e-4450-a3f1-6abe61bf9974
 # ╟─2dc43448-3cf4-475f-8b61-d16c3594d9e3
