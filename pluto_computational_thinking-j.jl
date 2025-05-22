@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.20.6
+# v0.20.8
 
 using Markdown
 using InteractiveUtils
@@ -60,18 +60,18 @@ md"""
 
 # ╔═╡ 2aa2a4f4-65d4-43e4-b8fb-13bcca1b84b9
 md"""
-### I. 計算論的思考 (computational thinking)
+#### 計算論的思考 (computational thinking) とは何か？
 
-- 数学および計算機を積極的に援用して問題の可視化や解決を図ろうという考え方である。
-
-
-- 現在では世界中の大学で古典的数学とプログラミング言語に長けた教員による "computational thinking" という題目の講義科目が提供されるようになっており、現代の必須の教養である。
+- 数学および計算機を積極的に援用して問題の可視化や解決を図ろうという考え方である.
 
 
-- [MIT 18S.191 Introduction to Computational Thinking](https://computationalthinking.mit.edu/Fall24/) が最も優れた講義として有名である。
+- 現在では世界中の大学で古典的数学とプログラミング言語の両方に長けた教員による "computational thinking" という題目の講義科目が提供されるようになっており、現代の必須の教養である.
 
 
-- 日本国では高等学校情報Iの教科書の序文に登場する言葉でしかなく、あまり知られていない言葉である。残念ながら古典的数学とプログラミング言語に長けた教員があまりいないので、このような講義を提供することができない。
+- [MIT 18.S191 Introduction to Computational Thinking](https://computationalthinking.mit.edu/Fall24/) が最も優れた講義として有名である.
+
+
+- 日本国では高等学校情報Iの教科書の序文に登場する言葉でしかなく, あまり知られていない言葉である. 残念ながら古典的数学とプログラミング言語の両方に長けた教員があまりいないので, このような講義を提供することができない.
 """
 
 # ╔═╡ 7d7e3384-cce9-4a97-bd78-604932418d56
@@ -92,13 +92,79 @@ md"""
 # ╔═╡ 763ca8d2-4975-4599-9aa2-247d2775c0cc
 
 
-# ╔═╡ 6abea7c8-899d-4278-8e43-043ae1147fdf
+# ╔═╡ 84e0ec88-3824-4ad8-a38c-c01d9cacc7d7
 md"""
-#### 2. 予備的考察
+#### ２. 関数のグラフに直線が接するとはどういうことか
+高校数学では「接する」という言葉自体は高校数学IIの
+- 円と直線の関係
+- 微分可能性
+に登場するが、それがどういうことなのかは何も説明がない。 実際には微分可能性の定義を論ずると「接する」ということの定義が見えてくる. 
+
+ここでは原点を中心とする単位円と直線の関係を観察してみよう。 高校数学IIでは $x^2+y^2=1$ と方程式 $y=ax+b$ で表される直線が接するとは, 交点がただ一つの場合と定義されていてるだけであり, 交点付近での円弧と直線の振る舞い方についての説明はない. このような交点は $a^2+1=b^2$ が成立する場合にのみ起こり, 直線の方程式と交点のは次の2通りになる:
+
+$\begin{aligned}
+  y=ax+\sqrt{1+a^2}, 
+& \quad
+  \text{P}\left(-\frac{a}{\sqrt{1+a^2}},\frac{1}{\sqrt{1+a^2}}\right),
+\\
+  y=ax-\sqrt{1+a^2}, 
+& \quad
+  \text{Q}\left(\frac{a}{\sqrt{1+a^2}},-\frac{1}{\sqrt{1+a^2}}\right).
+\end{aligned}$
+
+P と Q を結ぶ直線の方程式は $y=-x/a$, 但し $a=0$ のときは $x=0$ で原点 $(0,0)$ を通り, 
+$y=ax+b$ と直交することに注意する. 
+
+ $a=\tan\theta$, $\theta\in(-\pi/2,\pi/2)$ とし, $\theta$ をパラメータとして図示する.
+
+θ = $(@bind θ1 Slider(-89:1:89, show_value=true, default=30)) 度
 """
+
+# ╔═╡ 5b8d6598-f602-4408-b948-84cec2bfc52a
+begin
+	f100(x,y) = x^2 + y^2 - 1
+	P=zeros(2)
+	Q=zeros(2)
+	P[1]=-tan(θ1*pi/180)/sqrt(1+tan(θ1*pi/180)^2)
+	Q[1]=1/sqrt(1+tan(θ1*pi/180)^2)
+	P[2]=tan(θ1*pi/180)/sqrt(1+tan(θ1*pi/180)^2)
+	Q[2]=-1/sqrt(1+tan(θ1*pi/180)^2)
+	implicit_plot(f100;
+				  grid=false,
+				  xlim=(-2,2),
+				  xlabel=L"x",
+				  xticks = ([-2 -1 0 1 2;], [-2,-1,0,1,2]),
+				  ylabel=L"y",
+				  yticks = ([-2 -1 0 1 2;], [-2,-1,0,1,2]),
+				  legend=false, 
+				  linewidth=2)
+	plot!([-2,2],[-2*tan(θ1*pi/180)+sqrt(1+tan(θ1*pi/180)^2),
+				  2*tan(θ1*pi/180)+sqrt(1+tan(θ1*pi/180)^2)],
+	 linecolor=:blue,
+	 linewidth=2,
+	 legend=:false)
+	plot!([-2,2],[-2*tan(θ1*pi/180)-sqrt(1+tan(θ1*pi/180)^2),
+				  2*tan(θ1*pi/180)-sqrt(1+tan(θ1*pi/180)^2)],
+	 linecolor=:green,
+	 linewidth=2,
+	 legend=:false)
+	plot!([-1.5*tan(θ1*pi/180)/sqrt(1+tan(θ1*pi/180)^2),
+		  1.5*tan(θ1*pi/180)/sqrt(1+tan(θ1*pi/180)^2)],
+		 [1.5/sqrt(1+tan(θ1*pi/180)^2),
+		  -1.5/sqrt(1+tan(θ1*pi/180)^2)],
+	 linecolor=:orange,
+	 linewidth=1,
+	 legend=:false)
+	scatter!(P,Q, markersize = 5,label = false, markercolor=:magenta)
+	scatter!((0,0), markersize = 5,label = false, markercolor=:red)
+end
+
+# ╔═╡ 05c00c05-c990-4632-ba43-4f6e14fad19f
+
 
 # ╔═╡ 4c26a3e2-7ad7-4ca5-a5bb-1cf747f1a11a
 md"""
+#### 3. 予備的考察
 p = $(@bind r Slider(0.1:0.1:10, show_value=true, default=2)) 
 """
 
@@ -107,7 +173,7 @@ p = $(@bind r Slider(0.1:0.1:10, show_value=true, default=2))
 
 # ╔═╡ 76cb2ec2-fc76-4ad5-8d57-777395755f7f
 md"""
-#### 3. $f(x)=x^2$  
+#### 4. $f(x)=x^2$  
 $g(x):=f(a)+\beta(x-a)={\color{orange}{a^2+\beta(x-a)}}$
 
 とすると
@@ -132,13 +198,10 @@ $
 $R(x):=
 f(x)-h(x)=(x-a)^2$
 
-となることに注意する. $\beta=2a$ のときのみ1次式 $x-a$ よりも速く $0$ に近づく. 
-"""
+となることに注意する. $\beta=2a$ のときのみ1次式 $x-a$ よりも速く $0$ に近づく.
 
-# ╔═╡ 092ba07e-4866-40c6-ade8-25d9c2218011
-md"""
 a = $(@bind a1 Slider(-4:0.1:4, show_value=true, default=2)) 
-β = $(@bind b1 Slider(-40:0.1:40, show_value=true, default=-0.5))
+β = $(@bind b1 Slider(-40:0.1:40, show_value=true, default=-1))
 """
 
 # ╔═╡ 21c924bb-23de-42ac-805b-a19744a8e105
@@ -162,10 +225,7 @@ $f(x)-g(x)
 \end{cases}$
 
 任意の $\beta$ に対して $\beta\pm1$ の少なくとも一方は $0$ にならないので, $x-a$ よりも速く $0$ に近づくことはない. 
-"""
 
-# ╔═╡ 5193aa51-fcde-4b7a-b942-924709834e4f
-md"""
 β = $(@bind b2 Slider(-40:0.1:40, show_value=true, default=0.3))
 """
 
@@ -197,10 +257,7 @@ $R(x):=
 f(x)-h(x)=(x+2a)(x-a)^2$
 
 となることに注意する. $\beta=3a^2-1$ のときのみ1次式 $x-a$ よりも速く $0$ に近づく. 
-"""
 
-# ╔═╡ 9e546dc8-fb95-4606-bedc-d8df0ea1afed
-md"""
 a = $(@bind a3 Slider(-4:0.1:4, show_value=true, default=1.5)) 
 β = $(@bind b3 Slider(-40:0.1:40, show_value=true, default=-1))
 """
@@ -1200,6 +1257,7 @@ begin
         color = :orange, label = false)
 	scatter!((u1,u2),markersize = 5,label=L"\vec{u}", color=:magenta)
 	scatter!((v1,v2),markersize = 5,label=L"\vec{v}", color=:blue)
+	scatter!((0,0),markersize = 5,label=L"\vec{0}", color=:red)
 end
 
 # ╔═╡ ca6d79ef-d5a4-4a55-b7f9-83d8682ddd1b
@@ -1215,6 +1273,7 @@ $A
 \\
 \sin\theta & \cos\theta
 \end{bmatrix}
+J
 \begin{bmatrix}
 \lambda & 0
 \\
@@ -1224,9 +1283,22 @@ $A
 \cos\varphi & -\sin\varphi
 \\
 \sin\varphi & \cos\varphi
-\end{bmatrix}$
+\end{bmatrix}
+K$
 
-が成立する. これを $A$ の特異値分解という. 特異値分解は一般の $m{\times}n$ 行列に一般化されるされる。
+が成立する. これを $A$ の特異値分解という. 特異値分解は一般の $m{\times}n$ 行列に一般化されるされる。 ここに
+
+$J, K = 
+\begin{bmatrix}
+1 & 0 
+\\
+0 & 1
+\end{bmatrix},
+\begin{bmatrix}
+0 & 1 
+\\
+1 & 0
+\end{bmatrix}.$
 
 
 行列 
@@ -2128,7 +2200,7 @@ Wavelets = "~0.10.1"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.11.4"
+julia_version = "1.11.5"
 manifest_format = "2.0"
 project_hash = "b5b97ce57e86b03028dff3a3907ca3b3678e8107"
 
@@ -3543,7 +3615,7 @@ version = "2.4.0+0"
 [[deps.OpenLibm_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "05823500-19ac-5b8b-9628-191a04bc5112"
-version = "0.8.1+4"
+version = "0.8.5+0"
 
 [[deps.OpenSSL]]
 deps = ["BitFlags", "Dates", "MozillaCACerts_jll", "OpenSSL_jll", "Sockets"]
@@ -4652,20 +4724,19 @@ version = "1.4.1+2"
 # ╟─38a19ae1-07b9-414c-999c-c74d2b8df7d5
 # ╟─c2b971bd-5dc2-4f84-80d2-dd5307a96961
 # ╟─763ca8d2-4975-4599-9aa2-247d2775c0cc
-# ╟─6abea7c8-899d-4278-8e43-043ae1147fdf
+# ╟─84e0ec88-3824-4ad8-a38c-c01d9cacc7d7
+# ╟─5b8d6598-f602-4408-b948-84cec2bfc52a
+# ╟─05c00c05-c990-4632-ba43-4f6e14fad19f
 # ╟─4c26a3e2-7ad7-4ca5-a5bb-1cf747f1a11a
 # ╟─769adba4-34e2-4e63-9099-2df3f6dbb529
 # ╟─c0233b8e-9db1-4a3a-8080-9f4bf7f3804b
 # ╟─76cb2ec2-fc76-4ad5-8d57-777395755f7f
-# ╟─092ba07e-4866-40c6-ade8-25d9c2218011
 # ╟─8ed1312b-f5a3-4220-a865-9a12ed09a691
 # ╟─21c924bb-23de-42ac-805b-a19744a8e105
 # ╟─cfb114a5-e5c4-429d-bf6e-9acf7ea4b31d
-# ╟─5193aa51-fcde-4b7a-b942-924709834e4f
 # ╟─3c696822-5b77-4512-83f0-c524371cde5d
 # ╟─728a353b-e2fe-460d-8dcc-0f4cadbbd033
 # ╟─2db362e9-e32a-4ba2-8810-3bdef318af41
-# ╟─9e546dc8-fb95-4606-bedc-d8df0ea1afed
 # ╟─6d2d8054-56e3-4499-a8ea-cfcf291361e8
 # ╟─b61b5be5-2b6e-4450-a3f1-6abe61bf9974
 # ╟─2dc43448-3cf4-475f-8b61-d16c3594d9e3
