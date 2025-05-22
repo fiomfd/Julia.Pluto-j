@@ -49,7 +49,7 @@ md"""
 - 現在では世界中の大学で古典的数学とプログラミング言語の両方に長けた教員による "computational thinking" という題目の講義科目が提供されるようになっており、現代の必須の教養である.
 
 
-- [MIT 18S.191 Introduction to Computational Thinking](https://computationalthinking.mit.edu/Fall24/) が最も優れた講義として有名である.
+- [MIT 18.S191 Introduction to Computational Thinking](https://computationalthinking.mit.edu/Fall24/) が最も優れた講義として有名である.
 
 
 - 日本国では高等学校情報Iの教科書の序文に登場する言葉でしかなく, あまり知られていない言葉である. 残念ながら古典的数学とプログラミング言語の両方に長けた教員があまりいないので, このような講義を提供することができない.
