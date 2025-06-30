@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.20.8
+# v0.20.13
 
 using Markdown
 using InteractiveUtils
@@ -43,16 +43,16 @@ md"""
 md"""
 #### 計算論的思考 (computational thinking) とは何か？
 
-- 数学および計算機を積極的に援用して問題の可視化や解決を図ろうという考え方である.
+- 数学および計算機を積極的に援用して問題の可視化や解決を図るための定式化を行うことである.
 
 
 - 現在では世界中の大学で古典的数学とプログラミング言語の両方に長けた教員による "computational thinking" という題目の講義科目が提供されるようになっており、現代の必須の教養である.
 
 
-- [MIT 18.S191 Introduction to Computational Thinking](https://computationalthinking.mit.edu/Fall24/) が最も優れた講義として有名である.
+- [MIT 18.C25 Julia: Solving Real-World Problems with Computation](https://computationalthinking.mit.edu/Fall24/) が世界で最も優れた computational thinking の講義の実践例として有名であり世界標準になっているが, 世界で最も優れた教育工学の実践例としても有名である.
 
 
-- 日本国では高等学校情報Iの教科書の序文に登場する言葉でしかなく, あまり知られていない言葉である. 残念ながら古典的数学とプログラミング言語の両方に長けた教員があまりいないので, このような講義を提供することができない.
+- 日本国では高等学校情報Iの教科書の序文に登場する言葉でしかなく, あまり知られていない言葉である. 残念ながら古典的数学とプログラミング言語の両方に長けた教員があまりいないので, このような講義を提供することができない. また日本語社会では数学とは一切関係のない「計算論的思考の偽物」が出回っているので要注意である.
 """
 
 # ╔═╡ 7d7e3384-cce9-4a97-bd78-604932418d56
